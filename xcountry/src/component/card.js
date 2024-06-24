@@ -21,6 +21,7 @@ function Card() {
     fetchCountries();
   }, []);
 
+ 
   useEffect(() => {
     setFilteredCountries(
       countries.filter((country) =>
@@ -33,16 +34,11 @@ function Card() {
     return <div>Error loading countries</div>;
   }
 
-  const RenderCard = ({ country }) => {
+  const RenderCard = ({ name, flag, alt }) => {
     return (
-      <div className="countryContainers">
       <div className="countryCard">
-        <img
-          src={country.flags.png}
-          alt={country.flags.alt || country.name.common}
-        />
-        <h3>{country.name.common}</h3>
-      </div>
+        <img src={flag} alt={alt || name} />
+        <h2>{name}</h2>
       </div>
     );
   };
@@ -50,24 +46,26 @@ function Card() {
   return (
     <div className="container">
       <nav className="navbar">
-       
         <input
           type="text"
           placeholder="Search for countries..."
           onChange={(e) => setSearchTerm(e.target.value)}
           className="searchbar"
         />
-        
       </nav>
-      
-        <div className="countryclass">
-          {filteredCountries.map((country, index) => (
-            <RenderCard key={index} country={country} />
-          ))}
-        </div>
-    
+      <div className="countryclass">
+        {filteredCountries.map((country, index) => (
+          <RenderCard 
+            key={index} 
+            name={country.name.common} 
+            flag={country.flags.png} 
+            alt={country.flags.alt} 
+          />
+        ))}
+      </div>
     </div>
   );
 }
 
 export default Card;
+
