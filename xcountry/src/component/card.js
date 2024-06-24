@@ -35,12 +35,14 @@ function Card() {
 
   const RenderCard = ({ country }) => {
     return (
+      <div className="countryContainers">
       <div className="countryCard">
         <img
           src={country.flags.png}
           alt={country.flags.alt || country.name.common}
         />
         <h3>{country.name.common}</h3>
+      </div>
       </div>
     );
   };
